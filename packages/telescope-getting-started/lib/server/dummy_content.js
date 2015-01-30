@@ -91,6 +91,13 @@ deleteDummyContent = function () {
   Comments.remove({isDummy: true});
 }
 
+deleteContent = function () {
+  Meteor.users.remove();
+  Posts.remove();
+  Comments.remove();
+}
+
+
 Meteor.methods({
   addGettingStartedContent: function () {
     if (isAdmin(Meteor.user())) {
@@ -102,6 +109,13 @@ Meteor.methods({
   removeGettingStartedContent: function () {
     if (isAdmin(Meteor.user()))
       deleteDummyContent();
+  },
+  removeContent: function () {
+    console.log("Things and stuff");
+    if (isAdmin(Meteor.user())) {
+      console.log("Stuff and things");
+      deleteContent();
+    }
   }
 })
 
