@@ -17,7 +17,7 @@ var handleFeed = function(error, feed) {
   var newItemsCount = 0;
 
   feedItems.forEach(function(item, index, array) {
-    
+
     // check if post already exists
     if (!!Posts.findOne({feedItemId: item.id})) {
       // clog('// Feed item already imported')
@@ -26,7 +26,7 @@ var handleFeed = function(error, feed) {
 
       var post = {
         title: he.decode(item.title),
-        url: item.link,
+        url: he.decode(item.link),
         feedId: feed.id,
         feedItemId: item.id,
         userId: userId
@@ -80,7 +80,7 @@ fetchFeeds = function() {
 
       console.log(error);
       return true; // just go to next url
-      
+
     }
   });
 }
@@ -94,5 +94,5 @@ Meteor.methods({
   },
   testToMarkdown: function (text) {
     console.log(toMarkdown(text));
-  } 
+  }
 })
